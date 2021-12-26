@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class AwsPlaygroundApplication
+open class Application
 
 fun main(args: Array<String>) {
-	runApplication<AwsPlaygroundApplication>(*args)
+    runApplication<Application>(*args)
 }

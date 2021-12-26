@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 plugins {
     id("org.springframework.boot") version "2.6.2"
@@ -36,4 +37,13 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.getByName<BootBuildImage>("bootBuildImage") {
+    environment = mapOf(
+        "BPE_APPEND_JAVA_TOOL_OPTIONS" to "-XX:ReservedCodeCacheSize=32M -Xss512k -XX:+PrintCodeCache",
+        "BPE_DELIM_JAVA_TOOL_OPTIONS" to " ",
+        "BPL_JVM_HEAD_ROOM" to "5",
+        "BPL_JVM_THREAD_COUNT" to "24",
+    )
 }
